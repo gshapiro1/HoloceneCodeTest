@@ -1,3 +1,4 @@
+    //firestore loading in data
     const list=document.querySelector('#listings')
 
     function renderList(doc){
@@ -46,7 +47,29 @@
     zoom: 13,
     // scrollZoom: false
   });
-  //var restaurants=
+  //let restaurants= {type:'FeatureCollection',
+//   features:[ restaurants.map(elem=>
+//     {
+//         type: 'Feature',
+//         geometry: {
+//           type: 'Point',
+//           coordinates: elem.coordinates
+//         },
+//         properties: {
+//           name: elem.name,
+//           description: elem.description,
+//           phoneFormatted: '(212)941-7994',
+//           phone: '2129417994',
+//           address: '32 Spring St',
+//           city: 'New York',
+//           country: 'United States',
+//           postalCode: '10012',
+//           state: 'NY'
+//         }
+//       }
+//   ])
+
+
   let stores = {
     type: 'FeatureCollection',
     features: [
