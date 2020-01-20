@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HOLOCENE</title>
+    <!-- jquery link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- bootstrap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- chart.js imported here -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- link to my own css styles -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div>
+        <h1>Holocene Code Test</h1>
+        <h3>By: Gerard Shapiro</h3>
+        <div id="chartandtable">
+            <div id="table">
+                <h2>Tabel</h2>
+                <table class="table table-striped">
+                    <tr  class="bg-info">
+                        <th>a</th>
+                        <th>b</th>
+                        <th>c</th>
+                    </tr>
+                
+                    <tbody id="myTable">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div >
+                <h2>Chart</h2>
+                <canvas id="chart" width="400" height="400"></canvas>
+            </div >
+        </div>
+    </div>
+</body>
+
+<script>
+	let myArray = [
+	    {'a':1, 'b':3, 'c':10},
+	    {'a':3, 'b':20, 'c':12},
+	    {'a':-1, 'b':-5, 'c':-4},
+    ]
+    //variables to hold the data for the chart used later
+    const alabels=[];
+    const btemps=[]
+    const ctemps=[]
+	function buildTable(data){
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+            //stores the values in arrays that will be used later in the chart
+            alabels.push(data[i].a);
+            btemps.push(data[i].b);
+            ctemps.push(data[i].c);
+            //creates the data for the table
+			var row = `<tr>
+							<td>${data[i].a}</td>
+							<td>${data[i].b}</td>
+							<td>${data[i].c}</td>
+					  </tr>`
+			table.innerHTML += row
+		}
+    }
+    
+    buildTable(myArray)
+
+    // chart code below
+    
+    function chartIt(){
+    const ctx = document.getElementById('chart').getContext('2d');
+    const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: alabels,
+        datasets: [{
+            label: 'B numbers',
+            data: btemps,
+            fill:false,
+            backgroundColor:  'rgba(255, 200, 1, 0.2)',
+            borderColor: 'rgba(25, 99, 1, 1)',
+            borderWidth: 1
+        },
+        {
+            label: 'C numbers',
+            data: ctemps,
+            fill:false,
+            backgroundColor:  'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }
+         ]
+        },
+    });
+}
+chartIt()
+
+</script>
+
+</html>
